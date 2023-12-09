@@ -3,8 +3,8 @@ import colors from "colors";
 import dotenv from "dotenv";
 import connectDB from "./db.js";
 import mongoose from "mongoose"
-
-
+import userRouter from './routes/user.route.js'
+import authRouter from './routes/auth.route.js'
 
 //configure env0
 dotenv.config();
@@ -24,9 +24,16 @@ mongoose.connect("mongodb+srv://hessen:hessen123@cluster0.stbfrve.mongodb.net/re
 
 //rest object
 const app = express();
-
+app.use(express.json())
 //middelwares
+app.get('/test',(req,res)=>{
+  res.json({
+    message:'hello'
+  })
+})
 
+app.use('/api/user',userRouter);
+app.use('/api/auth',authRouter)
 //PORT
 const PORT = 8000;
 
@@ -37,3 +44,4 @@ app.listen(PORT, () => {
       .white
   );
 });
+
