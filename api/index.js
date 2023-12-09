@@ -50,7 +50,7 @@ const PORT = 8000;
 //run listen
 app.listen(PORT, () => {
   console.log(
-    'Server Running on mode on port PORT 8000'.bgCyan
+    `Server Running on mode on port PORT ${PORT}`.bgCyan
       .white
   );
 });
