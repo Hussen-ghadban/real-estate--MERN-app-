@@ -5,8 +5,8 @@ import connectDB from "./db.js";
 import mongoose from "mongoose"
 import userRouter from './routes/user.route.js'
 import authRouter from './routes/auth.route.js'
-
-//configure env0
+import cookieParser from "cookie-parser";
+//configure env
 dotenv.config();
 // console.log("ihi")
 // console.log(process.env.MONGO_URL)
@@ -25,6 +25,7 @@ mongoose.connect("mongodb+srv://hessen:hessen123@cluster0.stbfrve.mongodb.net/re
 //rest object
 const app = express();
 app.use(express.json())
+app.use(cookieParser())
 //middelwares
 app.get('/test',(req,res)=>{
   res.json({
