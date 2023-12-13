@@ -114,21 +114,21 @@ export default function Profile() {
   };
 
   const handleSignOut = async () => {
-    // try {
-    //   dispatch(signOutUserStart());
-    //   const res = await fetch('/api/auth/signout');
-    //   const data = await res.json();
-    //   if (data.success === false) {
-    //     dispatch(deleteUserFailure(data.message));
-    //     return;
-    //   }
-    //   dispatch(deleteUserSuccess(data));
-    // } catch (error) {
-    //   dispatch(deleteUserFailure(data.message));
-    // }
-    localStorage.clear();
-    navigate('/sign-in');
-    Cookies.remove("access_token")
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(data.message));
+    }
+    // localStorage.clear();
+    // navigate('/sign-in');
+    // Cookies.remove("access_token")
     
   };
 
