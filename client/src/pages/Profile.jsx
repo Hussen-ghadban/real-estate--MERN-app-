@@ -18,9 +18,10 @@ import {
   signOutUserStart,
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 export default function Profile() {
   const fileRef = useRef(null);
+  const navigate = useNavigate();
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -125,8 +126,10 @@ export default function Profile() {
     // } catch (error) {
     //   dispatch(deleteUserFailure(data.message));
     // }
-    localStorage.removeItem("persist:root");
-    Cookies.remove('access_token')
+    localStorage.clear();
+    navigate('/sign-in');
+    Cookies.remove("access_token")
+    
   };
 
   const handleShowListings = async () => {
